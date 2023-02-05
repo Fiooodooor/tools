@@ -1,0 +1,10 @@
+- name: 'Parse dictionary hosts'
+  hosts: 'all'
+  gather_facts: false
+  tasks:
+    - name: 'Print debug welcome message'
+      when: (ansible_host == 'localhost') or (ansible_host == '127.0.0.1')
+      ansible.builtin.debug:
+        msg: >
+          Node: {{ ansible_play_hosts_all }} says welcome!
+          Groups: {{ groups }}

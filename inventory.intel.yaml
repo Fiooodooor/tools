@@ -1,0 +1,33 @@
+
+plugin: add_inventory
+
+terraform:
+  enabled: true
+  module: "aws"
+  path: "wsf/aws"
+  instances:
+    worker-0:
+      private_ip: "192.168.0.2"
+      public_ip: "43.128.10.20"
+      ansible_user: ubuntu
+    worker-1:
+      private_ip: "192.168.1.2"
+      public_ip: "4.28.110.21"
+      ansible_user: ubuntu
+    worker-2:
+      private_ip: "192.168.2.2"
+      public_ip: "98.18.10.22"
+      ansible_user: ubuntu
+    controller-0:
+      private_ip: "192.168.3.2"
+      public_ip: "197.225.190.23"
+      ansible_user: ubuntu
+    janitor-0:
+      private_ip: "10.0.0.1"
+      public_ip: "11.22.33.44"
+      ansible_user: root
+
+logical_groups:
+  - controller
+  - worker
+  - janitor

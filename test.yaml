@@ -1,0 +1,42 @@
+- name: 'Parse dictionary hosts'
+  hosts: 'localhost'
+  vars:
+    my_parsed_hosts:
+      controller-a:
+        name: 'controller-node'
+        ansible_user: 'ubuntu'
+        ansible_host: '10.0.10.1'
+        my_variable: false
+      worker-b:
+        name: 'worker-node'
+        ansible_user: 'ubuntu'
+        ansible_host: '127.0.0.1'
+        my_variable: false
+      aws-worker-custom-c:
+        name: 'aws-worker-custom'
+        ansible_user: 'ubuntu'
+        ansible_host: '192.168.42.128'
+        my_variable: true
+  tasks:
+    - name: 'Add new hosts to this playbook from dictionary'
+      ansible.builtin.add_host:
+        name: '{{ item.value.name }}'
+        ansible_user: '{{ item.value.ansible_user }}'
+        ansible_host: '{{ item.value.ansible_host }}'
+        my_variable: '{{ item.value.my_variable }}'
+        groups:
+          - 'worker_nodes'
+          - 'grafana'
+      with_dict: '{{ my_parsed_hosts }}'
+      when:
+        - ('worker_nodes' not in groups)
+        - ('worker' in item.value.name)
+        - (item.value.name not in ansible_play_hosts_all)
+
+- name: 'Use parsed dictionary hosts'
+  hosts: 'worker_nodes'
+  tasks:
+    - name: 'Print debug welcome message'
+      ansible.builtin.debug:
+        msg: >
+          Node {{ ansible_host }} says welcome!

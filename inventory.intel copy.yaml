@@ -1,0 +1,40 @@
+
+plugin: add_inventory
+
+terraform:
+  enabled: true
+  module: "aws"
+  path: "wsf/aws"
+  
+  
+instances:
+  controller:
+    size: 1
+    type: "m6i.4xlarge"
+    other_groups:
+      - kube_controller
+      - nodes
+    labels:
+    taints:
+  worker:
+    size: 3
+    type: "m6i.8xlarge"
+    other_groups:
+      - kube_node
+      - nodes
+    labels:
+    taints:
+  janitor:
+    size: 1
+    type: "m6i.4xlarge"
+    groups:
+      - kube_node
+      - nodes
+    labels:
+    taints:
+  
+
+# ansible_user:
+# ansible_host:
+# private_ip: "192.168.0.2"
+# public_ip: "43.128.10.20"
