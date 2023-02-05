@@ -1,0 +1,60 @@
+terraform:
+  worker-0:
+    private_ip: 192.168.0.2
+    public_ip: 43.128.10.20
+    ansible_user: ubuntu
+  worker-1:
+    private_ip: 192.168.1.2
+    public_ip: 4.28.110.21
+    ansible_user: ubuntu
+  worker-2:
+    private_ip: 192.168.2.2
+    public_ip: 98.18.10.22
+    ansible_user: ubuntu
+  controller-0:
+    private_ip: 192.168.3.2
+    public_ip: 197.225.190.23
+    ansible_user: ubuntu
+  janitor-0:
+    private_ip: 10.0.0.1
+    public_ip: 11.22.33.44
+    ansible_user: root
+
+
+
+
+
+Multiaccount management:
+https://www.cncf.io/projects/cloud-custodian/
+https://cloudcustodian.io/docs/index.html
+
+
+Intel® QuickAssist Technology - Hadoop, Spark, Parquet, ORC:
+https://www.intel.com/content/www/us/en/search.html?ws=text#q=hadoop&sort=relevancy
+https://github.com/Intel-bigdata/IntelQATCodec
+
+Spark GraphX Module (1-2 rzędy wielkości uzysku):
+https://spark.apache.org/docs/latest/graphx-programming-guide.html
+
+NODE LABELS:
+ObservabilityNode
+
+NameNode
+DataNode
+
+Resource Mgr Node
+Coordinator Node
+Worker Node
+
+Hadoop:
+2 Name nodes --> pod-anti-affinity each other, node toleration: NameNode (higher priority), DataNode
+Data Node    --> node toleration: DataNode
+
+docker buildx build --platform=darwin .
+--platform
+
+docker buildx create --name arm64_macos --platform=darwin/arm64
+docker buildx build --platform=darwin/arm64 --builder=arm64_macos
+
+
+{"instances":["worker-0":{"private_ip":"192.168.0.2","public_ip":"43.128.10.20","ansible_user":"ubuntu"},"worker-1":{"private_ip":"192.168.1.2","public_ip":"4.28.110.21","ansible_user":"ubuntu"},"worker-2":{"private_ip":"192.168.2.2","public_ip":"98.18.10.22","ansible_user":"ubuntu"},"controller-0":{"private_ip":"192.168.3.2","public_ip":"197.225.190.23","ansible_user":"ubuntu"},"janitor-0":{"private_ip":"10.0.0.1","public_ip":"11.22.33.44","ansible_user":"root"},]}

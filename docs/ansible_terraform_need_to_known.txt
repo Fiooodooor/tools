@@ -1,0 +1,108 @@
+https://docs.ansible.com/ansible/2.9/plugins/callback/log_plays.html#log-plays-callback
+
+https://github.com/ansible/awx/blob/devel/INSTALL.md
+
+--step
+https://docker-py.readthedocs.io/en/latest/api.html#module-docker.types
+
+https://github.com/alibaba/ansible-provider-docs/blob/master/contrib/inventory/ec2.py
+
+
+
+https://docs.ansible.com/ansible/latest/collections/ansible/builtin/rekey_on_member_filter.html
+
+
+https://docs.ansible.com/ansible/latest/collections/community/general/terraform_module.html
+
+https://github.com/ansible/ansible-builder
+
+https://docs.ansible.com/ansible/latest/collections/ansible/builtin/constructed_inventory.html#constructed-inventory
+
+
+Just as there's a lifecycle for applications with a corresponding delivery pipeline, there's a lifecycle for application services with a corresponding deployment pipeline. That lifecycle requires multiple steps:
+
+Provision
+a. Provisioning is the process of actually spinning up an instance - whether a virtual machine or container, whether in a public or private cloud.
+Onboard
+a. Onboarding is necessary to setup the networking required to operate in the environment in which BIG-IP has been deployed.
+Deploy
+a. During the deploy phase of the lifecycle, an application service is defined, configured, and launched.
+Operate
+a. Ongoing operations require monitoring and analytics. F5 Telemetry Streaming enables BIG-IP to plug-in to telemetry pipelines to share desired metrics and data.
+Change
+a. Change is the process of modifying existing configurations (specified initially during the deploy phase).
+
+# ==============================================================================================
+https://www.redhat.com/en/topics/automation/ansible-vs-terraform:
+# ==============================================================================================
+Automation terms to know
+# ==============================================================================================
+As you’re researching automation solutions, you’ve undoubtedly seen many terms used to describe the key differences and functionality of the products. Let’s define some of the most common ones and explore how they relate to each other—and to Ansible and Terraform.
+
+# ==============================================================================================
+Orchestration
+# ==============================================================================================
+
+Orchestration is the coordinated execution of multiple workflows. Each workflow executes one or more tasks. Orchestrated together, these workflows automate the configuration and management of complex systems, applications, and services. This coordination usually follows pre-established rules defined in a policy. Orchestration can also coordinate multiple automation solutions. Those, in turn, execute the automation workflows. 
+
+Both Ansible and Terraform can act as orchestrators as they can invoke multiple automation workflows in sequence following specific policies. Ansible has built-in modules to connect to and manage other automation tools (including Terraform). As a result, you can standardize your approach to automation across your entire IT estate, using Ansible as the top-level, common language for all teams. 
+
+# ==============================================================================================
+Provisioning
+# ==============================================================================================
+
+Provisioning is the process of creating and deploying IT infrastructure for applications and services. 
+Both Ansible and Terraform can provision (and deprovision) IT infrastructure. Ansible can also provision apps and services.
+
+# ==============================================================================================
+Configuration management
+# ==============================================================================================
+
+Configuration management is the process of defining and maintaining the configuration of infrastructure, applications, and services.
+
+Like many other automation solutions, Ansible and Terraform can both define configurations and apply them to various infrastructure targets. However, their approach to configuration management differs. Terraform uses an approach called declarative programming, which tries to preserve the configuration of an IT infrastructure by defining a desired state. Ansible uses a procedural (or imperative) programming approach, which tries to preserve the configuration of an IT infrastructure by defining the steps to reach a desired state. Each process is detailed below. 
+
+An Infrastructure as Code (IaC)
+# ==============================================================================================
+
+An Infrastructure as Code (IaC) approach defines and provisions infrastructure through code that will be executed automatically, instead of through manual processes. By treating an IT infrastructure as code, organizations can automate management tasks, benefitting from best practices of software development and reducing human error. 
+
+Both Ansible and Terraform are IaC tools, though, as mentioned, the programming used by each solution differs.
+
+# ==============================================================================================
+Declarative programming
+# ==============================================================================================
+
+Declarative programming is a method of writing code to describe the desired outcome of the program, rather than detailing how to do it. It is focused on the end state, instead of the specific commands and steps needed to get there. 
+
+Terraform uses the Hashicorp Configuration Language (HCL) as its automation language and a declarative programming approach. This means that the sequence of commands that Terraform has to perform to achieve the required configuration changes are not visible or known to the end user. 
+
+# ==============================================================================================
+Procedural (imperative)
+# ==============================================================================================
+
+Procedural, or imperative, programming is a method of writing code to provide the computer with a list of instructions—a step-by-step guide—to completing a task. It is focused on the process, instead of the end state. For its automation language, Ansible uses YAML, a human-readable data-serialization language. The YAML syntax is interpreted and executed in a procedural manner, meaning that the automation workflow is executed in the sequence in which it was written. 
+
+Ansible can be both declarative and procedural—many modules work declaratively, while other modules prefer a procedural programming approach. Additionally, some constructs in the Ansible language, such as conditionals and loops, allow the users to define a procedural logic. This mix offers you the flexibility to focus on what you need to do, rather than strictly adhere to one paradigm. 
+
+# ==============================================================================================
+Configuration immutability
+# ==============================================================================================
+
+Configuration immutability means that the configuration (of an infrastructure or an application) can’t be changed. For example, provisioning the newer version of an app requires the previous version to be eliminated and replaced—rather than modified and updated. Resources are destroyed and recreated automatically. 
+
+Terraform uses an immutable infrastructure approach, which can help users get started quickly as they can easily spin up resources, test something, then tear it down. However, depending on the size of the infrastructure, it can become complex and hard to manage. Although Ansible is designed assuming configuration mutability, some automation workflows can be designed to embrace the immutability approach.
+
+# ==============================================================================================
+Configuration mutability
+# ==============================================================================================
+
+Configuration mutability means that the configuration (of an infrastructure or an application) can be changed. For example, newer versions of applications can be provisioned by updating or modifying the existing resource instead of eliminating or replacing it. 
+
+Ansible is designed assuming configuration mutability. The advantage of this approach is that the automation workflows are simple to understand and easy to troubleshoot. However, in certain scenarios, it can be challenging to deprovision resources without knowing the correct order of operations. 
+
+# ==============================================================================================
+Configuration drift 
+# ==============================================================================================
+
+Configuration drift occurs when an infrastructure changes due to manual, unapproved, or unmonitored changes over time—and those changes are not recorded or tracked systematically. Often, these changes are due to emergencies or excessive complexity, factors that can discourage employees from following the established process. As a result, configuration drift is frequent in large organizations. 
