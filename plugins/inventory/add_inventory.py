@@ -71,11 +71,6 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         self._tf_global = config['terraform']
         self._tf_instances = config['terraform']['instances']
 
-         # if NOT using _read_config_data you should call set_options directly,
-         # to process any defined configuration for this plugin,
-         # if you don't define any options you can skip
-         #self.set_options()
-
         for logical_group in self._logical_groups:
             try:
                 group = self.inventory.add_group(logical_group)

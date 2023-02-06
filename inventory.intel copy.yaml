@@ -1,19 +1,21 @@
 
+
 plugin: add_inventory
 
 terraform:
   enabled: true
-  module: "aws"
-  path: "wsf/aws"
+  module: "wsf/aws"
   
-  
-instances:
+infrastructure:
   controller:
-    size: 1
-    type: "m6i.4xlarge"
+    vm_count: 1
+    instance_type: "m6i.4xlarge"
+    threads_per_core: null
+    cpu_core_count: null
     other_groups:
       - kube_controller
       - nodes
+    variables:
     labels:
     taints:
   worker:
@@ -22,6 +24,7 @@ instances:
     other_groups:
       - kube_node
       - nodes
+    variables:
     labels:
     taints:
   janitor:
@@ -30,11 +33,20 @@ instances:
     groups:
       - kube_node
       - nodes
+    variables:
     labels:
     taints:
   
+registry:
+environment:
+benchmark:
+results:
+
+
 
 # ansible_user:
 # ansible_host:
+# ansible_port:
+
 # private_ip: "192.168.0.2"
 # public_ip: "43.128.10.20"
